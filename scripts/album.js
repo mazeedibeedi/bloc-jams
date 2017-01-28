@@ -28,6 +28,21 @@ var albumMarconi = {
     ]
 };
 
+var albumDali = {
+    title: 'The Persistence of Memory',
+    artist: 'Salvador Dali',
+    label: 'Surreal',
+    year: '1931',
+    albumArtUrl: 'assets/images/album_covers/03.png',
+    songs: [
+        { title: 'The Nobility of Time', duration: '1:00'},
+        { title: 'The Profile of Time', duration: '2:00'},
+        { title: 'The Three Dancing Watches', duration: '3:00'},
+        { title: 'The Persistence of Memory', duration: '4:00'},
+        { title: 'The Disintegration of the Persistance of Memory', duration: '5:00'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -62,3 +77,15 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
 }
+
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+albumImage.addEventListener('click', function(){
+    if(albumArtist.textContent === 'Pablo Picasso') {
+        setCurrentAlbum(albumMarconi);
+    } else if (albumArtist.textContent === 'Guglielmo Marconi') {
+        setCurrentAlbum(albumDali);
+    } else {
+        setCurrentAlbum(albumPicasso);
+    }   
+});
