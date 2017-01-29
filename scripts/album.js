@@ -118,11 +118,12 @@ window.onload = function() {
     setCurrentAlbum(albumPicasso);
     
     songListContainer.addEventListener('mouseover', function(event) {
-        var songItem = getSongItem(event.target);
-        var songItemNumber = songItem.getAttribute('data-song-number');
-        var songItemParent = findParentByClassName(songItem, 'album-view-song-item');
-        if (songItemParent.className === 'album-view-song-item' && songItemNumber !== currentlyPlayingSong) {
-            event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+        if (event.target.parentElement.className === 'album-view-song-item') {
+            var songItem = getSongItem(event.target);
+            
+            if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
+                songItem.innerHTML = playButtonTemplate;
+            }
         }
     });
     
