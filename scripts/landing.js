@@ -1,29 +1,23 @@
-var points = document.getElementsByClassName('point');
-
-var animatePoints = function (points) {
+var animatePoints = function() {
     
-    var revealPoint= function (i) {
-        points[i].style.opacity = 1;
-        points[i].style.transform = "scaleX(1) translateY(0)";
-        points[i].style.msTransform = "scaleX(1) translateY(0)";
-        points[i].style.WebKitTransform = "scaleX(1) translateY(0)";
+    var revealPoint= function() {
+        $(this).css({
+            opacity: 1,
+            transform: 'scaleX(1) translateY(0)'
+        });
     };             
-
-    for (var i = 0; i < points.length; i++) {
-        revealPoint(i);
-    }    
+    $.each($('.point'), revealPoint);
                  
 };
 
-window.onload = function() {
-    if (window.innerHeight > 950) {
-        animatePoints(points);
+$(window).load(function() {
+    if ($(window).height() > 950) {
+        animatePoints();
     }
-    var sellingPoints = document.getElementsByClassName('selling-points')[0];
-    var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
-    window.addEventListener("scroll", function(event) {
-        if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
+    var scrollDistance = $('.sellingPoints').offset().top - $(window).height() + 200;
+    $(window).scroll(function(event) {
+        if ($(window).scrollTop() >= scrollDistance) {
             animatePoints(points);
         }
     });
-}
+});
